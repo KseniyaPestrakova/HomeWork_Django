@@ -15,12 +15,15 @@ class MyServer(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header("Content-type", "text/html")
         self.end_headers()
-        self.wfile.write(bytes("{'message': 'OK'}", "utf-8"))
+        with open("html/main_page.html", "r", encoding="utf-8") as f:
+            html_content = f.read()
+        self.wfile.write(bytes(html_content, "utf-8"))
+
 
 if __name__ == "__main__":
 
     webServer = HTTPServer((hostName, serverPort), MyServer)
-    print("Server started http://%s:%s" % (hostName, serverPort))
+    print(f"Server started http://{hostName}:{serverPort}")
 
     try:
         webServer.serve_forever()
