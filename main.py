@@ -15,7 +15,7 @@ class MyServer(BaseHTTPRequestHandler):
         self.send_response(200)
         self.send_header("Content-type", "text/html")
         self.end_headers()
-        with open("html/catalog.html", "r", encoding="utf-8") as f:
+        with open("html/contacts.html", "r", encoding="utf-8") as f:
             html_content = f.read()
         self.wfile.write(bytes(html_content, "utf-8"))
 
