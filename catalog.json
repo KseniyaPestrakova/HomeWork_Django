@@ -1,0 +1,57 @@
+[
+{
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+        "name": "Мебель",
+        "description": "категория товаров, предназначенных для создания уюта, функциональности и стиля в жилых и рабочих пространствах"
+    }
+},
+{
+    "model": "catalog.category",
+    "pk": 5,
+    "fields": {
+        "name": "Электроника",
+        "description": "категория, включающая современные устройства и гаджеты, которые делают жизнь удобнее и продуктивнее."
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 8,
+    "fields": {
+        "name": "Стол",
+        "description": "Стол обеденный нераскладной",
+        "image": "",
+        "category": 4,
+        "price": 20000,
+        "created_at": "2024-12-14T20:33:16.015Z",
+        "updated_at": "2024-12-14T20:33:16.015Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 9,
+    "fields": {
+        "name": "Шкаф",
+        "description": "Шкаф распашной",
+        "image": "",
+        "category": 4,
+        "price": 40000,
+        "created_at": "2024-12-14T20:33:16.016Z",
+        "updated_at": "2024-12-14T20:33:16.016Z"
+    }
+},
+{
+    "model": "catalog.product",
+    "pk": 10,
+    "fields": {
+        "name": "Телевизор",
+        "description": "Телевизор 32\" Full HD",
+        "image": "",
+        "category": 5,
+        "price": 18000,
+        "created_at": "2024-12-14T20:33:16.017Z",
+        "updated_at": "2024-12-14T20:33:16.017Z"
+    }
+}
+]
