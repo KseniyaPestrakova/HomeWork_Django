@@ -2,6 +2,15 @@ from django.shortcuts import render, get_object_or_404
 
 from catalog.models import Product
 
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+
+
+class MyProductsHomeListView(ListView):
+    model = Product
+    template_name = 'catalog/home_list.html'
+    context_object_name = 'mymodels'
+
 
 def home(request):
     if request.method == "GET":
