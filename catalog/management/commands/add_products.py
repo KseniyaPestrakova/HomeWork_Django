@@ -7,7 +7,7 @@ class Command(BaseCommand):
     help = 'Load test data from fixture'
 
     def handle(self, *args, **kwargs):
-        Category.objects.all().delete()
+
         Product.objects.all().delete()
 
         call_command('loaddata', 'catalog.json')

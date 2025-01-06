@@ -1,0 +1,38 @@
+{% extends 'blog/base.html' %}
+{% load my_tags %}
+{% block content %}
+<title>Публикация</title>
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col">
+                <div class="card shadow-sm">
+                    <img src="{{ article.preview | media_filter }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ object.title }}</h5>
+                        <p class="card-text">{{ object.content }}</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Количество просмотров: {{ object.views }}</li>
+                            <li class="list-group-item">Дата создания: {{ object.created_at }}</li>
+                            <li class="list-group-item">Статус публикации: {% if object.is_published %}
+                            Опубликовано
+                            {% else %}
+                            Не опубликовано
+                            {% endif %}</li>
+                        </ul>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a class="btn btn-outline-info" href="{% url 'blog:article_list' %}"
+                                   role="button">Назад</a>
+                                <a class="btn btn-warning" href="{% url 'blog:article_update' article.pk %}"
+                                   role="button">Редактировать</a>
+                                <a class="btn btn-danger" href="{% url 'blog:article_confirm_delete' article.pk %}"
+                                   role="button">Удалить</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
