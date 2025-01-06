@@ -9,7 +9,6 @@ class Article(models.Model):
     is_published = models.BooleanField(default=True)
     views = models.IntegerField(default=0)
 
-
     def __str__(self):
         return self.title
 
@@ -17,6 +16,3 @@ class Article(models.Model):
         verbose_name = "публикация"
         verbose_name_plural = "публикации"
         ordering = ["created_at"]
-
-
-
