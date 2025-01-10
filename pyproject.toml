@@ -13,6 +13,7 @@ python-dotenv = "^1.0.1"
 pillow = "^11.0.0"
 black = "^24.10.0"
 ipython = "^8.30.0"
+django-phonenumber-field = "^8.0.0"
 
 
 [tool.poetry.group.dev.dependencies]
