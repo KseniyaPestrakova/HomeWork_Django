@@ -16,6 +16,7 @@
                         <form method="post" action="{% url 'users:logout' %}" style="display: inline">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-link nav-link">Выйти</button>
+                            <p class="card-text">{{ user.email }}</p>
                         </form>
                     </li>
                     {% else %}

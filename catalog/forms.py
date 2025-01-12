@@ -6,7 +6,7 @@ from django.core.exceptions import ValidationError
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['name', 'description', 'image', 'category', 'price']
+        fields = ['name', 'description', 'image', 'category', 'price', 'publish_product']
 
     def __init__(self, *args, **kwargs):
         super(ProductForm, self).__init__(*args, **kwargs)
@@ -39,4 +39,10 @@ class ProductForm(forms.ModelForm):
                 self.add_error('name', f'Наименование товара не может содержать слово {word}')
             elif word in description.lower():
                 self.add_error('description', f'Описание товара не может содержать слово {word}')
+
+
+class ProductModeratorForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['publish_product']
 
