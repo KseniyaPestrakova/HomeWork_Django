@@ -10,7 +10,6 @@ from django.core.exceptions import PermissionDenied
 from django.forms import inlineformset_factory
 
 
-
 class UnpublishProductView(LoginRequiredMixin, View):
     def post(self, request, product_id):
         product = get_object_or_404(Product, id=product_id)
@@ -85,5 +84,3 @@ class ProductsDeleteView(LoginRequiredMixin, DeleteView):
             return product
         else:
             raise PermissionDenied
-
-
