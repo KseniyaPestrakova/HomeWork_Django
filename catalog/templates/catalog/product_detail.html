@@ -11,6 +11,8 @@
                         <p class="card-text">{{ object.name }}</p>
                         <p class="card-text">{{ object.description }}</p>
                         <p class="card-text">Категория: {{ object.category }}</p>
+                        <a class="btn btn-info" href="{% url 'catalog:category_products' object.category_id %}"
+                                   role="button">Посмотреть все товары категории {{ object.category }}</a>
                         <p class="card-text">Цена: {{ object.price }} руб.</p>
                         <p class="card-text">Товар опубликован: {% if object.publish_product %} Да
                         {% else %} Нет
