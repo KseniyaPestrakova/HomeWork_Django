@@ -30,15 +30,15 @@ class UnpublishProductView(LoginRequiredMixin, View):
 class ProductsHomeListView(ListView):
     model = Product
 
-    # def get_queryset(self):
-    #     queryset = cache.get('products_queryset')
-    #     if not queryset:
-    #         queryset = super().get_queryset()
-    #         cache.set('products_queryset', queryset, 60 * 5)
-    #     return queryset
+    def get_queryset(self):
+        queryset = cache.get('products_queryset')
+        if not queryset:
+            queryset = super().get_queryset()
+            cache.set('products_queryset', queryset, 60 * 5)
+        return queryset
 
 
-# @method_decorator(cache_page(60 * 5), name='dispatch')
+@method_decorator(cache_page(60 * 5), name='dispatch')
 class ProductsDetailView(LoginRequiredMixin, DetailView):
     model = Product
 
