@@ -1,13 +1,17 @@
 from django.views.generic import DetailView, ListView, TemplateView, UpdateView, DeleteView, View
 from django.views.generic.edit import CreateView
-from django.urls import reverse, reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 from catalog.forms import ProductForm, ProductModeratorForm
-from catalog.models import Product
+from catalog.models import Product, Category
 from django.shortcuts import get_object_or_404, redirect
 from django.http import HttpResponseForbidden
 from django.core.exceptions import PermissionDenied
-from django.forms import inlineformset_factory
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
+from django.core.cache import cache
+
+from catalog.services import category_products
 
 
 class UnpublishProductView(LoginRequiredMixin, View):
@@ -26,7 +30,15 @@ class UnpublishProductView(LoginRequiredMixin, View):
 class ProductsHomeListView(ListView):
     model = Product
 
+    def get_queryset(self):
+        queryset = cache.get('products_queryset')
+        if not queryset:
+            queryset = super().get_queryset()
+            cache.set('products_queryset', queryset, 60 * 5)
+        return queryset
 
+
+@method_decorator(cache_page(60 * 5), name='dispatch')
 class ProductsDetailView(LoginRequiredMixin, DetailView):
     model = Product
 
@@ -84,3 +96,13 @@ class ProductsDeleteView(LoginRequiredMixin, DeleteView):
             return product
         else:
             raise PermissionDenied
+
+
+class CategoryProductsListView(ListView):
+    model = Category
+    template_name = "catalog/category_products.html"
+
+    def get_queryset(self):
+        category_id = self.kwargs.get('pk')
+        queryset = category_products(category_id=category_id)
+        return queryset
